@@ -1,4 +1,10 @@
-# demo
+# vue3 + ts Demo
+
+## 项目使用技术栈
+~~~
+1、vue 3.0
+2、typescript
+~~~
 
 ## Project setup
 ```
