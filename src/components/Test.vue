@@ -36,7 +36,7 @@ export default {
       state.count++;
     };
 
-    const showToast = () => {
+    const showToast = (): void => {
       Toast.loading({
         message: '加载中...',
         forbidClick: true
