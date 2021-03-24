@@ -1,19 +1,40 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="home">
+    <img alt="Vue logo" src="../assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
   </div>
 </template>
 
 <script lang="ts">
-import { Options, Vue} from 'vue-class-component';
+import { Options, Vue } from 'vue-class-component';
+import HelloWorld from '@/components/HelloWorld.vue';
+import { getCurrentInstance } from 'vue';
+import { login } from '@/api/login';
 
-@Options({
-  props: {
-
-  }
-})
-
-export default class About extends Vue {
-
-}
+  @Options({
+    components: {
+      HelloWorld
+    },
+    mounted(): void {
+      this.loginTest();
+      this.logout();
+    },
+    methods: {
+      async loginTest() {
+        const data = await login(null);
+        console.log(data);
+      },
+      async logout(data: any) {
+        // 使用插件方式
+        const axios = getCurrentInstance()?.appContext.config.globalProperties.$axios;
+        const res = await axios.request({
+          url: '/logout',
+          method: 'get',
+          data
+        });
+        console.log(res);
+      }
+    }
+  })
+export default class About extends Vue {}
 </script>
